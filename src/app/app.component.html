@@ -1,0 +1,5 @@
+here
+<span *ngIf="test | async as data; else loading">
+    {{ data | json }}
+</span>
+<ng-template #loading> loading </ng-template>

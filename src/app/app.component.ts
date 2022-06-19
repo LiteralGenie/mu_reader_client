@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { config } from 'src/config/config';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    fetch() {}
+    constructor(private http: HttpClient) {}
+
+    test = this.http.get(config.serverUrl + 'series/ids');
 }
