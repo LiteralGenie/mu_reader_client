@@ -1,0 +1,35 @@
+@import "src/theme.scss";
+
+.container {
+    position: relative;
+    margin: 0px 2px;
+    padding: 6px 8px;
+    border: 1px solid mat-color($accent);
+    border-radius: 10px;
+
+    opacity: 0.65;
+    &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+        .background {
+            background-color: mat-color($accent, darker);
+            border-radius: 10px;
+        }
+        .name {
+            text-shadow: 1px 1px 10px #000;
+        }
+    }
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.name {
+    position: relative;
+    font-size: 0.85em;
+}

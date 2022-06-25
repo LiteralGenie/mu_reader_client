@@ -1,5 +1,24 @@
-here
-<span *ngIf="test | async as data; else loading">
-    {{ data | json }}
-</span>
-<ng-template #loading> loading </ng-template>
+<mat-toolbar>
+    <button mat-icon-button class="menu-button" (click)="leftDrawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-icon-button class="filter-button">
+        <mat-icon>filter_list</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-drawer-container autosize style="height: 100%">
+    <mat-drawer #leftDrawer mode="over" position="start">
+        <p>Auto-resizing sidenav</p>
+        <p>Lorem, ipsum dolor sit amet consectetur.</p>
+        <button mat-raised-button>Toggle extra text</button>
+    </mat-drawer>
+
+    <div *ngIf="ids$ | async as ids" style="margin-top: 25px">
+        <ng-container *ngFor="let id of ids">
+            <div class="card-container">
+                <app-series-card [sid]="id"></app-series-card>
+            </div>
+        </ng-container>
+    </div>
+</mat-drawer-container>

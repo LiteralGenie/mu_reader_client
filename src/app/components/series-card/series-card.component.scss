@@ -1,0 +1,71 @@
+mat-card {
+    // Layout
+    display: grid;
+    grid-template-areas:
+        "cover title"
+        "cover score"
+        "cover description"
+        "cover tags"
+        "cover categories"
+        "cover spacer";
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: min-content min-content 1fr max-content max-content 0;
+
+    // Total size
+    height: 250px;
+    width: 750px;
+    margin: 0 auto;
+
+    // Prevent overflow
+    > * {
+        overflow: hidden;
+    }
+
+    font-size: 15px;
+}
+
+picture {
+    grid-area: cover;
+    justify-self: center;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center top;
+    }
+}
+
+.title {
+    grid-area: title;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.score {
+    grid-area: score;
+    margin-bottom: 12px;
+}
+
+.description {
+    grid-area: description;
+    margin-bottom: 20px;
+}
+
+.tags {
+    grid-area: tags;
+    white-space: nowrap;
+    margin-bottom: 6px;
+}
+
+.categories {
+    grid-area: categories;
+    white-space: nowrap;
+}
+
+.debug {
+    display: none;
+    margin-bottom: -8px;
+}

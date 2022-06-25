@@ -1,0 +1,15 @@
+@use "@angular/material" as mat;
+@import "~@angular/material/theming";
+
+$primary: mat-palette($mat-pink, 700, 500, 900);
+$accent: mat-palette($mat-blue-grey, A200, A100, A400);
+$warn: mat-palette($mat-red);
+$theme: mat.define-dark-theme(
+    (
+        color: (
+            primary: $primary,
+            accent: $accent,
+            warn: $warn,
+        ),
+    )
+);

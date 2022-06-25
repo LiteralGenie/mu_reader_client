@@ -1,0 +1,26 @@
+@import "src/theme.scss";
+
+// spacing
+.card-container {
+    margin-bottom: 8px;
+}
+
+// size
+.mat-toolbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+// align
+.menu-button {
+    justify-self: start;
+}
+.filter-button {
+    justify-self: end;
+}
+
+// color
+.mat-toolbar {
+    background: mat-color($primary);
+}

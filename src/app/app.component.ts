@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { config } from 'src/config/config';
+import { DataService } from './services/data-service.service';
 
 @Component({
     selector: 'app-root',
@@ -8,7 +7,7 @@ import { config } from 'src/config/config';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    constructor(private http: HttpClient) {}
+    constructor(private dataService: DataService) {}
 
-    test = this.http.get(config.serverUrl + 'series/ids');
+    ids$ = this.dataService.fetch_series_ids({ offset: 0, limit: 100 });
 }

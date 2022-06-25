@@ -1,0 +1,24 @@
+<mat-card *ngIf="data" [class.debug]="debug">
+    <picture>
+        <img
+            #placeholder
+            src="https://cdn.discordapp.com/attachments/598883191541071882/755923335895842816/do_you_still_like_me-gigapixel.png"
+        />
+        <img
+            #cover
+            [src]="img"
+            (load)="onImageLoad(cover, placeholder)"
+            [hidden]="true"
+        />
+    </picture>
+    <h3 class="title">{{ data.title }}</h3>
+    <div class="score">{{ data.bayesian_rating }}</div>
+    <div class="description" [innerHtml]="data.description | safeHtml"></div>
+    <div class="tags" style="display: flex; flex-flow: row">
+        <app-tag *ngFor="let tag of data.genres" [name]="tag"> </app-tag>
+    </div>
+    <div class="categories" style="display: flex; flex-flow: row">
+        <app-tag *ngFor="let tag of data.categories" [name]="tag"> </app-tag>
+    </div>
+    <div class="spacer"></div>
+</mat-card>
