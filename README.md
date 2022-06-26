@@ -2,14 +2,13 @@
 
 Personal manga reader. Automatically provides metadata for series by pulling from [Baka-Updates](https://www.mangaupdates.com/).
 
-[@todo live demo site]
-
 <blockquote>
 <details>
 <summary>Screenshots</summary>
-
-@todo
-
+  
+  <img src="https://user-images.githubusercontent.com/24236225/175819208-adc5456e-844a-490d-b5a8-0fe958be89c3.png">
+  <img src="https://user-images.githubusercontent.com/24236225/175819210-242404e6-b9a5-413c-92d0-a19ada20045d.png">
+  
 </details>
 </blockquote>
 
@@ -17,7 +16,7 @@ Personal manga reader. Automatically provides metadata for series by pulling fro
 
 Immediate goals: 
 - [ ] Allow reading of archives (.cbr, .7z, etc) and loose images (.png)
-- [~] Automatically provide metadata for a series based on only the series name
+- [ ] Automatically provide metadata for a series based on only the series name
 - [x] Searching / filtering / sorting series
 - [ ] Support libraries of at least ~10k series / ~100k books without issue
 
