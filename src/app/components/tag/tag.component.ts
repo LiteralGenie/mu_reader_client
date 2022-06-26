@@ -1,14 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
 @Component({
     selector: 'app-tag',
     templateUrl: './tag.component.html',
     styleUrls: ['./tag.component.scss'],
 })
-export class TagComponent implements OnInit {
-    @Input() name!: string;
-
-    constructor() {}
-
-    ngOnInit(): void {}
+export class TagComponent {
+    @Input() name!: string
 }

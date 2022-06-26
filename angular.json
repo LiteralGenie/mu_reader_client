@@ -70,7 +70,8 @@
                             "browserTarget": "proj:build:production"
                         },
                         "development": {
-                            "browserTarget": "proj:build:development"
+                            "browserTarget": "proj:build:development",
+                            "host": "0.0.0.0"
                         }
                     },
                     "defaultConfiguration": "development"

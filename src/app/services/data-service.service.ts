@@ -17,8 +17,15 @@ export class DataService {
     constructor(private http: HttpClient) {}
 
     private seriesCache: SeriesCache = {}
+    private categoriesCache: Category[] = []
+    private genresCache: Genre[] = []
 
-    fetch_series(id: number) {
+    /**
+     * Fetch a single series
+     * @param id
+     * @returns
+     */
+    fetch_series(id: number): Observable<SeriesData> {
         if (this.seriesCache[id]) {
             return of(this.seriesCache[id].data)
         } else {
@@ -32,23 +39,44 @@ export class DataService {
         }
     }
 
+    /**
+     * Fetch a list of series ids
+     * @todo This is probably unncessary
+     * @param options.offset
+     * @param options.limit Number of items
+     * @returns
+     */
     fetch_series_ids({ offset = 0, limit = 30 } = {}) {
         return this.http.get<number[]>(
             config.serverUrl + `series/ids?offset=${offset}&limit=${limit}`
         )
     }
 
+    /**
+     * Create URL to cover image for a series
+     * @param id
+     * @returns
+     */
     get_cover_url(id: number): string {
         return config.serverUrl + `series/images/${id}`
     }
 
+    /**
+     * Fetch a list of series ids, with filtering / sorting
+     * @param request
+     * @returns
+     */
     fetch_search(request: SearchRequest) {
         const url =
             config.serverUrl + `series/search?` + request.serializeToQuery()
         return this.http.get<SearchResponse>(url)
     }
 
-    private genresCache: Genre[] = []
+    /**
+     * Fetch a list of genres
+     * @param update Whether to fetch a fresh or cached list
+     * @returns
+     */
     fetch_genres(update: boolean = false): Observable<Genre[]> {
         if (this.genresCache.length > 0 || update) {
             return of([...this.genresCache])
@@ -60,7 +88,11 @@ export class DataService {
         }
     }
 
-    private categoriesCache: Category[] = []
+    /**
+     * Fetch a list of categories
+     * @param update Whether to fetch a fresh or cached list
+     * @returns
+     */
     fetch_categories(update: boolean = false): Observable<Category[]> {
         if (this.categoriesCache.length > 0 || update) {
             return of([...this.categoriesCache])

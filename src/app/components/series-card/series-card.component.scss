@@ -10,6 +10,7 @@ mat-card {
         "cover spacer";
     grid-template-columns: 200px 1fr;
     grid-template-rows: min-content min-content 1fr max-content max-content 0;
+    gap: 0px 12px;
 
     // Total size
     height: 250px;

@@ -108,10 +108,10 @@ export class FilterDialog {
             checkbox.indeterminate = false
         } else {
             // include -> exclude
-            include.add(id)
+            include.delete(id)
             checkbox.checked = false
 
-            exclude.delete(id)
+            exclude.add(id)
             checkbox.indeterminate = true
         }
     }
@@ -137,10 +137,10 @@ export class FilterDialog {
             checkbox.indeterminate = false
         } else {
             // include -> exclude
-            include.add(id)
+            include.delete(id)
             checkbox.checked = false
 
-            exclude.delete(id)
+            exclude.add(id)
             checkbox.indeterminate = true
         }
     }

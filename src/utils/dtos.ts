@@ -28,7 +28,7 @@ export class SearchRequest {
     genres_exclude: Set<number> = new Set()
     categories: Set<number> = new Set()
     categories_exclude: Set<number> = new Set()
-    ascending = false
+    ascending: 0 | 1 = 0
 
     serializeToQuery(): string {
         let qs: string[] = []
@@ -65,6 +65,16 @@ export class SearchRequest {
         })
 
         return qs.join('&')
+    }
+
+    setSortType(sortType: SortType): this {
+        this.sort_type = sortType
+        return this
+    }
+
+    setSortOrder(sortOrder: 0 | 1): this {
+        this.ascending = sortOrder
+        return this
     }
 }
 

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog'
-import { map, Observable } from 'rxjs'
-import { SearchRequest, SearchResponse, SortType } from 'src/utils/dtos'
+import { EMPTY, map, Observable } from 'rxjs'
+import { SearchRequest, SortType } from 'src/utils/dtos'
 import { FilterDialog } from './components/filter/filter.dialog'
 import { DataService } from './services/data-service.service'
 import { SearchService, SortOrder } from './services/search.service'
@@ -17,33 +17,44 @@ export class AppComponent implements AfterViewInit {
         private matDialog: MatDialog,
         private searchService: SearchService
     ) {
+        // Init list of series
         const request = new SearchRequest()
-        request.sort_type = SortType.SCORE
-        this.searchService.search(request, SortOrder.DESCENDING)
-        this.loadList()
+            .setSortType(SortType.SCORE)
+            .setSortOrder(SortOrder.DESCENDING)
+        this.searchService.search(request).subscribe(() => {
+            this.reloadList()
+        })
     }
 
     ngAfterViewInit(): void {
+        // for debugging
         this.onFilterClick()
     }
 
     readonly pageSize = 100
-    ids$!: Observable<number[]>
+    ids$: Observable<number[]> = EMPTY
     offset = 0
 
+    /**
+     * Open filter dialog
+     */
     onFilterClick() {
         const config: MatDialogConfig = {}
         this.matDialog
             .open(FilterDialog, config)
             .afterClosed()
             .subscribe((result) => {
+                // If user made a selection, reload list
                 if (result === undefined) return
-
-                this.loadList({ reset: true })
+                this.reloadList({ reset: true })
             })
     }
 
-    loadList({ reset = false } = {}): void {
+    /**
+     * Show user a list of series
+     * @param options.reset whether to reset the current page index to 0
+     */
+    reloadList({ reset = false } = {}): void {
         if (reset) this.offset = 0
 
         this.ids$ = this.searchService.activeSort.data.pipe(
