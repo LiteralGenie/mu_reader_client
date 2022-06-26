@@ -1,0 +1,68 @@
+@import "src/theme.scss";
+
+.container {
+    min-width: 50vw;
+    min-height: 60vh;
+
+    display: flex;
+    flex-flow: column;
+
+    .mat-dialog-content {
+        flex-grow: 1;
+    }
+}
+
+.mat-dialog-actions {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    justify-content: flex-end;
+
+    button {
+        min-width: 90px;
+    }
+}
+
+.general-tab {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 20px;
+
+    .checkboxes {
+        display: flex;
+        gap: 20px;
+    }
+}
+
+.genres-tab {
+    column-count: 2;
+    margin: 20px;
+
+    .mat-checkbox {
+        display: block;
+    }
+}
+
+.categories-tab {
+    margin: 40px 20px;
+
+    .category {
+        .divider {
+            width: 100%;
+            border-top: 1px solid mat-color($accent);
+            margin: 10px 0px;
+        }
+
+        .header {
+            margin: 20px 0px 5px 0px;
+        }
+
+        .list {
+            column-count: 2;
+
+            .mat-checkbox {
+                display: block;
+            }
+        }
+    }
+}

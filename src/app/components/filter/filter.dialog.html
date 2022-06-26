@@ -1,0 +1,134 @@
+<div class="container">
+    <h2 mat-dialog-title>Select Filters</h2>
+
+    <mat-dialog-content>
+        <mat-tab-group>
+            <!-- General tab -->
+            <mat-tab label="GENERAL">
+                <div class="general-tab">
+                    <mat-form-field appearance="outline" class="title">
+                        <mat-label>Title</mat-label>
+                        <input
+                            matInput
+                            type="text"
+                            cdkFocusInitial
+                            [(ngModel)]="request.title"
+                        />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="author">
+                        <mat-label>Author</mat-label>
+                        <input
+                            matInput
+                            type="text"
+                            [(ngModel)]="request.author"
+                        />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="year-min">
+                        <mat-label>Year Min</mat-label>
+                        <input
+                            matInput
+                            type="number"
+                            min="1990"
+                            [(ngModel)]="request.year_start_min"
+                        />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="year-max">
+                        <mat-label>Year Max</mat-label>
+                        <input
+                            matInput
+                            type="number"
+                            min="1990"
+                            [(ngModel)]="request.year_start_max"
+                        />
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="score">
+                        <mat-label>Score</mat-label>
+                        <input
+                            matInput
+                            type="number"
+                            step="0.1"
+                            min="5"
+                            [(ngModel)]="request.score_min"
+                        />
+                    </mat-form-field>
+
+                    <div class="checkboxes">
+                        <mat-checkbox
+                            [(ngModel)]="request.completed"
+                            class="completed"
+                        >
+                            Completed
+                        </mat-checkbox>
+
+                        <mat-checkbox
+                            [(ngModel)]="request.licensed"
+                            class="licensed"
+                        >
+                            Licensed
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <!-- Genres tab -->
+            <mat-tab label="GENRES">
+                <div class="genres-tab">
+                    <ng-container *ngFor="let genre of (genres | async)">
+                        <mat-checkbox
+                            #checkbox
+                            (click)="$event.preventDefault(); onGenreClick(genre, checkbox)"
+                        >
+                            {{ genre.name }}
+                            <span class="count"> ({{ genre.count }}) </span>
+                        </mat-checkbox>
+                    </ng-container>
+                </div>
+            </mat-tab>
+
+            <!-- Categories tab -->
+            <mat-tab label="CATEGORIES">
+                <ng-template matTabContent>
+                    <div class="categories-tab">
+                        <div
+                            class="category"
+                            *ngFor="let grp of (category_bins | async); index as idx;"
+                        >
+                            <div class="divider" *ngIf="idx !== 0"></div>
+                            <h3 class="header" *ngIf="idx !== 0">
+                                <{{ grp.breakpoint }}
+                            </h3>
+                            <div class="list">
+                                <mat-checkbox
+                                    #checkbox
+                                    *ngFor="let cat of grp.bin"
+                                    (click)="$event.preventDefault(); onGenreClick(cat, checkbox)"
+                                >
+                                    {{ cat.name }} ({{ cat.count }})
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-dialog-content>
+
+    <div mat-dialog-actions>
+        <button class="clear" mat-raised-button (click)="onClear()">
+            Clear
+        </button>
+        <button class="close" mat-raised-button mat-dialog-close>Cancel</button>
+        <button
+            class="submit"
+            mat-raised-button
+            color="primary"
+            (click)="onSubmit()"
+        >
+            Search
+        </button>
+    </div>
+</div>
